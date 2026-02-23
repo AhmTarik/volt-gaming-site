@@ -24,7 +24,7 @@ const HeroSection = () => {
           Welcome to
         </p>
         <h1 className="font-heading text-5xl md:text-7xl lg:text-8xl font-black mb-6 gradient-text opacity-0 animate-fade-up [animation-delay:0.15s]">
-          PIXELFORGE
+          Volt Gaming
         </h1>
         <p className="font-body text-xl md:text-2xl text-muted-foreground mb-10 opacity-0 animate-fade-up [animation-delay:0.3s]">
           Next Level Gaming Experience

@@ -10,13 +10,24 @@ interface PcCardProps {
   emoji: string;
   specs: PcSpec[];
   premium?: boolean;
+  backgroundImage?: string;
 }
 
-const PcCard = ({ title, emoji, specs, premium }: PcCardProps) => (
+const PcCard = ({ title, emoji, specs, premium, backgroundImage }: PcCardProps) => (
   <div
-    className={`glass-card rounded-2xl p-8 flex flex-col transition-transform duration-300 hover:-translate-y-2 ${
+    className={`glass-card rounded-2xl p-8 flex flex-col transition-transform duration-300 hover:-translate-y-2 relative overflow-hidden ${
       premium ? "neon-glow-purple border border-primary/30" : "neon-glow-blue border border-secondary/20"
     }`}
+    style={
+      backgroundImage
+        ? {
+            backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.75)), url(${backgroundImage})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundColor: "transparent",
+          }
+        : undefined
+    }
   >
     {premium && (
       <span className="self-start px-3 py-1 rounded-full text-xs font-heading uppercase tracking-wider bg-primary/20 text-primary mb-4">
@@ -72,8 +83,8 @@ const PcsSection = () => {
           Choose your weapon. Every station is built for performance.
         </p>
         <div className="grid md:grid-cols-2 gap-8">
-          <PcCard title="Ultra PC" emoji="🔥" specs={ultraSpecs} premium />
-          <PcCard title="Volt PC" emoji="⚡" specs={voltSpecs} />
+          <PcCard title="Ultra PC" emoji="🔥" specs={ultraSpecs} premium backgroundImage="/images/ultra-pc.jpg" />
+          <PcCard title="Volt PC" emoji="⚡" specs={voltSpecs} backgroundImage="/images/volt-pc.jpg"/>
         </div>
       </div>
     </section>

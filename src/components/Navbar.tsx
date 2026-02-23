@@ -27,7 +27,7 @@ const Navbar = () => {
     >
       <div className="container mx-auto flex items-center justify-between px-4">
         <a href="#home" className="font-heading text-xl font-bold gradient-text tracking-wider">
-          PIXELFORGE
+          Volt
         </a>
 
         {/* Desktop */}
