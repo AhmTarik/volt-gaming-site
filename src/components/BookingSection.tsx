@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { z } from "zod";
+import { MapPin } from "lucide-react";
+
+const MAP_LINK = "https://maps.app.goo.gl/7fjgL28b1Fx3qKQa6";
 
 const bookingSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100),
@@ -166,13 +169,24 @@ const BookingSection = () => {
             {errors.duration && <p className="text-accent text-sm mt-1">{errors.duration}</p>}
           </div>
 
-          {/* Submit */}
-          <button
-            type="submit"
-            className="w-full py-4 rounded-lg font-heading text-sm uppercase tracking-wider bg-primary text-primary-foreground hover:opacity-90 transition-opacity neon-glow-purple"
-          >
-            Submit Booking
-          </button>
+          {/* Submit + Location */}
+          <div className="flex flex-col sm:flex-row gap-4">
+            <button
+              type="submit"
+              className="flex-1 py-4 rounded-lg font-heading text-sm uppercase tracking-wider bg-primary text-primary-foreground hover:opacity-90 transition-opacity neon-glow-purple"
+            >
+              Submit Booking
+            </button>
+            <a
+              href={MAP_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 flex-1 py-4 rounded-lg font-heading text-sm uppercase tracking-wider border border-secondary text-secondary hover:bg-secondary/10 transition-colors neon-glow-blue"
+            >
+              <MapPin size={20} />
+              Location
+            </a>
+          </div>
         </form>
       </div>
     </section>

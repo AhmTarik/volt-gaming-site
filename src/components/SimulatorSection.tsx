@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import simulatorBg from "@/assets/simulator-bg.jpg";
 
 const SimulatorSection = () => {
@@ -35,17 +36,17 @@ const SimulatorSection = () => {
               className="glass-card rounded-xl p-6 neon-glow-red border border-accent/20 hover:-translate-y-1 transition-transform duration-300"
             >
               <span className="text-3xl mb-3 block">{item.emoji}</span>
-              <p className="font-heading text-sm uppercase tracking-wider">{item.name}</p>
+              <p className="font-heading text-lg uppercase tracking-wider">{item.name}</p>
             </div>
           ))}
         </div>
 
-        <a
-          href="#booking"
+        <Link
+          to="/simulator"
           className="inline-flex items-center justify-center px-8 py-4 rounded-lg font-heading text-sm uppercase tracking-wider bg-accent text-accent-foreground hover:opacity-90 transition-opacity neon-glow-red"
         >
           Book Simulator
-        </a>
+        </Link>
       </div>
     </section>
   );

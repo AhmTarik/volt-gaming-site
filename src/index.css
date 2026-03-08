@@ -83,6 +83,10 @@
     box-shadow: 0 0 15px hsl(185 80% 50% / 0.4), 0 0 45px hsl(185 80% 50% / 0.15);
   }
 
+  .neon-glow-green {
+    box-shadow: 0 0 15px hsl(142 70% 45% / 0.4), 0 0 45px hsl(142 70% 45% / 0.15), inset 0 0 15px hsl(142 70% 45% / 0.05);
+  }
+
   .neon-text-purple {
     text-shadow: 0 0 10px hsl(263 70% 58% / 0.6), 0 0 40px hsl(263 70% 58% / 0.3);
   }
