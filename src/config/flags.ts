@@ -19,13 +19,14 @@ const urlOverride = (name: string): boolean | undefined => {
   return undefined;
 };
 
-const envOn = (value: string | undefined) => value === "on" || value === "1" || value === "true";
+/** Unset means on: only an explicit "off" / "0" / "false" turns a flag off. */
+const envOn = (value: string | undefined) => !(value === "off" || value === "0" || value === "false");
 
 export const FLAGS = {
   /**
    * Home page: replace the "Our PCs" and "Simulator" sections with the scroll film
    * from /experience (Ultra rooms → Volt rooms → Sim racing).
-   * Env: VITE_FLAG_HOME_EXPERIENCE=on|off (default off). URL: ?homeExperience=on|off
+   * Env: VITE_FLAG_HOME_EXPERIENCE=on|off (default on). URL: ?homeExperience=on|off
    */
   homeExperience: urlOverride("homeExperience") ?? envOn(import.meta.env.VITE_FLAG_HOME_EXPERIENCE),
 };
