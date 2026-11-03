@@ -1,3 +1,4 @@
+import plugin from "tailwindcss/plugin";
 import type { Config } from "tailwindcss";
 
 export default {
@@ -13,11 +14,6 @@ export default {
       },
     },
     extend: {
-      screens: {
-        // Side-by-side layout of the scroll film (src/experience): wide AND landscape,
-        // so a portrait tablet gets the stacked phone layout.
-        cine: { raw: "(min-width: 768px) and (min-aspect-ratio: 1/1)" },
-      },
       fontFamily: {
         heading: ["Orbitron", "Changa", "sans-serif"],
         body: ["Rajdhani", "Changa", "sans-serif"],
@@ -120,5 +116,11 @@ export default {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    // `cine:` = side-by-side layout of the scroll film (src/experience): wide AND landscape,
+    // so a portrait tablet gets the stacked phone layout. A variant rather than a raw `screens`
+    // entry, because object screens switch off Tailwind's max-* / min-[...] variants.
+    plugin(({ addVariant }) => addVariant("cine", "@media (min-width: 768px) and (min-aspect-ratio: 1/1)")),
+  ],
 } satisfies Config;

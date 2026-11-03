@@ -243,7 +243,7 @@ export const BookingSheet = ({ target, lang, onClose }: { target: BookingTarget;
           </button>
         </div>
 
-        <fieldset className="mb-4">
+        <fieldset className="mb-4 min-w-0">
           <legend className={label}>{t.day}</legend>
           <div className="flex flex-wrap gap-2">
             {(["today", "tomorrow", "other"] as const).map((m) => (
@@ -282,7 +282,7 @@ export const BookingSheet = ({ target, lang, onClose }: { target: BookingTarget;
           </select>
         </label>
 
-        <fieldset className="mb-4">
+        <fieldset className="mb-4 min-w-0">
           <legend className={label}>{t.length}</legend>
           <div className="flex flex-wrap gap-2">
             {DURATIONS[kind].map((h) => (

@@ -63,7 +63,7 @@ const SuggestionsSection = () => {
         type="button"
         onClick={() => setKind(k)}
         aria-pressed={on}
-        className="flex flex-1 items-center justify-center gap-2 rounded-xl border px-4 py-3 font-body text-lg font-bold transition-colors"
+        className="flex min-w-0 flex-1 items-center justify-center gap-2 rounded-xl border px-3 py-3 font-body text-base font-bold transition-colors sm:px-4 sm:text-lg"
         style={{
           borderColor: on ? color : "rgb(255 255 255 / 0.15)",
           background: on ? `color-mix(in srgb, ${color} 16%, transparent)` : "transparent",
@@ -105,7 +105,7 @@ const SuggestionsSection = () => {
               window.open(whatsappHref(message()), "_blank", "noopener,noreferrer");
             }}
           >
-            <fieldset className="mb-5">
+            <fieldset className="mb-5 min-w-0">
               <legend className={label}>{t("type")}</legend>
               <div className="flex gap-3">
                 {kindButton("suggestion", Lightbulb, "#22d3ee")}
