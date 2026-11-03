@@ -1,0 +1,69 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build output
+dist/
+dist-ssr/
+build/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor & OS
+.DS_Store
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+Thumbs.db
+
+# TypeScript
+*.tsbuildinfo
+
+# Cache
+.cache/
+.eslintcache
+.parcel-cache/
+
+# Testing
+coverage/
+
+# Keep the env template
+!.env.example
+
+# AI / tooling local files (not part of the app)
+.claude/
+.playwright-mcp/
+.cursor/
+CLAUDE.local.md
+
+# Notes and design drafts (not code)
+docs/
+
+# Raw source photos (optimized copies live in public/photos/)
+images/
+
+# Misc
+*.local
+*.tmp
+*.bak
+
+# Images the site does not use, kept locally in case we need them later
+unused-images/

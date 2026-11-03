@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@500;600;700&display=swap');
+
+/*
+ * Scroll-driven type for /experience. The render loop writes two numbers per scene:
+ *   --v   0..1  how far the scene's copy has entered
+ *   --out 0..1  how far it has left
+ * Each line staggers its own entrance from --v using its index --j.
+ */
+/* Registered so a room's accent colour can fade instead of snapping. */
+@property --accent {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #22d3ee;
+}
+
+.cine-accent-host {
+  transition: --accent 0.6s ease;
+}
+
+.cine-scene {
+  --v: 0;
+  --out: 0;
+  --ox: 0px;
+  --zs: 0;
+}
+
+.cine-line {
+  --e: clamp(0, calc(var(--v) * 2.4 - var(--j, 0) * 0.24), 1);
+  opacity: calc(var(--e) * (1 - var(--out)));
+  transform: translate3d(calc(var(--out) * var(--ox)), calc((1 - var(--e)) * 44px - var(--out) * 28px), 0)
+    scale(calc(1 + var(--out) * var(--zs)));
+  filter: blur(calc((1 - var(--e)) * 8px + var(--out) * 10px));
+  will-change: transform, opacity, filter;
+}
+
+/* Big display title: letters pull together as it enters. */
+.cine-title {
+  letter-spacing: calc(-0.02em + (1 - var(--e)) * 0.35em + var(--out) * 0.2em);
+}
+
+.cine-slash {
+  color: var(--accent);
+  text-shadow: 0 0 18px var(--accent), 0 0 42px color-mix(in srgb, var(--accent) 50%, transparent);
+}
+
+/* Specs and numbers: Orbitron's 7 reads badly, so values use Oxanium. */
+.cine-num {
+  font-family: "Oxanium", "Orbitron", "Changa", sans-serif;
+}
+
+.cine-accent {
+  color: var(--accent);
+}
+
+.cine-rule {
+  transform-origin: left;
+  transform: scaleX(var(--e));
+  background: linear-gradient(90deg, var(--accent), transparent);
+}
+
+@keyframes cine-scroll-cue {
+  0% { transform: scaleX(0); transform-origin: left; }
+  45% { transform: scaleX(1); transform-origin: left; }
+  55% { transform: scaleX(1); transform-origin: right; }
+  100% { transform: scaleX(0); transform-origin: right; }
+}
+
+.cine-cue-line-x {
+  animation: cine-scroll-cue 2.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cine-line {
+    transform: none;
+    filter: none;
+  }
+  .cine-title {
+    letter-spacing: -0.02em;
+  }
+  .cine-cue-line-x {
+    animation: none;
+  }
+}
