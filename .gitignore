@@ -67,3 +67,6 @@ images/
 
 # Images the site does not use, kept locally in case we need them later
 unused-images/
+
+# Vite cache
+.vite/
