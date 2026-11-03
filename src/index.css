@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Changa:wght@500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -41,8 +41,9 @@
     --neon-red: 340 80% 55%;
     --neon-cyan: 185 80% 50%;
 
-    --font-heading: 'Orbitron', sans-serif;
-    --font-body: 'Rajdhani', sans-serif;
+    /* Changa comes after the Latin fonts so Arabic letters fall back to it glyph by glyph. */
+    --font-heading: 'Orbitron', 'Changa', sans-serif;
+    --font-body: 'Rajdhani', 'Changa', sans-serif;
   }
 }
 
@@ -63,6 +64,12 @@
 
   html {
     scroll-behavior: smooth;
+  }
+
+  /* Arabic: letter-spacing breaks the joins between letters, so turn it off everywhere. */
+  html[lang="ar"] *,
+  [lang="ar"] {
+    letter-spacing: normal !important;
   }
 }
 
@@ -115,4 +122,128 @@
     backdrop-filter: blur(16px);
     border: 1px solid hsl(0 0% 100% / 0.06);
   }
+}
+
+/*
+ * Hero neon sign. Each word is a "tube" with its own colour (--neon) and timing.
+ * On load it starts unlit, flickers on (neon-ignite), then hums softly with an
+ * occasional blip (neon-hum). Only opacity animates, so it stays cheap.
+ */
+.neon-tube {
+  --neon: #2ea8ff;
+  --core: #e6f6ff;
+  --ignite-delay: 0s;
+  --hum-duration: 4s;
+  color: var(--core);
+  -webkit-text-fill-color: var(--core);
+  text-shadow:
+    0 0 2px #fff,
+    0 0 6px #fff,
+    0 0 12px var(--neon),
+    0 0 24px var(--neon),
+    0 0 48px var(--neon),
+    0 0 90px var(--neon);
+  animation:
+    neon-ignite 1s linear var(--ignite-delay) both,
+    neon-hum var(--hum-duration) ease-in-out calc(var(--ignite-delay) + 1s) infinite;
+}
+
+.neon-tube--blue {
+  --neon: #2ea8ff;
+  --core: #e6f6ff;
+}
+
+.neon-tube--pink {
+  --neon: #ff2bd6;
+  --core: #ffe9fb;
+}
+
+@keyframes neon-ignite {
+  0% { opacity: 0.12; }
+  10% { opacity: 1; }
+  13% { opacity: 0.12; }
+  19% { opacity: 0.9; }
+  22% { opacity: 0.12; }
+  40% { opacity: 0.12; }
+  44% { opacity: 1; }
+  47% { opacity: 0.55; }
+  52% { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+@keyframes neon-hum {
+  0%, 100% { opacity: 1; }
+  40% { opacity: 0.88; }
+  /* a short double blip every cycle, like a real tube */
+  78% { opacity: 1; }
+  79.5% { opacity: 0.2; }
+  81% { opacity: 1; }
+  83% { opacity: 0.45; }
+  84.5% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .neon-tube {
+    animation: none;
+  }
+}
+
+/* Hero buttons drawn as neon tubes: glowing outline + glowing label on a faint tint. */
+.neon-btn {
+  --neon: #ff2bd6;
+  --core: #ffe9fb;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 1rem 2.25rem;
+  border-radius: 0.75rem;
+  border: 2px solid var(--core);
+  background: color-mix(in srgb, var(--neon) 10%, transparent);
+  color: var(--core);
+  font-family: var(--font-heading);
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-shadow: 0 0 6px var(--neon), 0 0 16px var(--neon);
+  box-shadow:
+    0 0 6px var(--neon),
+    0 0 18px var(--neon),
+    0 0 42px color-mix(in srgb, var(--neon) 45%, transparent),
+    inset 0 0 14px color-mix(in srgb, var(--neon) 55%, transparent);
+  transition: box-shadow 0.25s ease, background-color 0.25s ease, transform 0.15s ease;
+}
+
+.neon-btn:hover {
+  background: color-mix(in srgb, var(--neon) 20%, transparent);
+  box-shadow:
+    0 0 8px var(--neon),
+    0 0 26px var(--neon),
+    0 0 64px color-mix(in srgb, var(--neon) 60%, transparent),
+    inset 0 0 20px color-mix(in srgb, var(--neon) 70%, transparent);
+}
+
+.neon-btn:active {
+  transform: scale(0.97);
+}
+
+.neon-btn:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+}
+
+.neon-btn--pink {
+  --neon: #ff2bd6;
+  --core: #ffe9fb;
+}
+
+.neon-btn--blue {
+  --neon: #2ea8ff;
+  --core: #e6f6ff;
+}
+
+.neon-ring {
+  border: 2px solid #cfeaff;
+  box-shadow: 0 0 6px #2ea8ff, 0 0 18px #2ea8ff, inset 0 0 10px rgb(46 168 255 / 0.5);
 }

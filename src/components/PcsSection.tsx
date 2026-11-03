@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
+import Reveal from "@/components/Reveal";
 import { Monitor, Cpu, Armchair, Gauge } from "lucide-react";
+import PriceList from "@/components/PriceList";
 
 interface PcSpec {
   icon: React.ReactNode;
@@ -13,11 +15,12 @@ interface PcCardProps {
   premium?: boolean;
   backgroundImage?: string;
   bookHref?: string;
+  priceTier?: "ultra" | "volt";
 }
 
-const PcCard = ({ title, emoji, specs, premium, backgroundImage, bookHref = "#booking" }: PcCardProps) => (
+const PcCard = ({ title, emoji, specs, premium, backgroundImage, bookHref = "#booking", priceTier }: PcCardProps) => (
   <div
-    className={`glass-card rounded-2xl p-8 flex flex-col transition-transform duration-300 hover:-translate-y-2 relative overflow-hidden ${
+    className={`glass-card rounded-2xl p-6 md:p-8 flex flex-col transition-transform duration-300 hover:-translate-y-2 relative overflow-hidden ${
       premium ? "neon-glow-purple border border-primary/30" : "neon-glow-blue border border-secondary/20"
     }`}
     style={
@@ -49,6 +52,7 @@ const PcCard = ({ title, emoji, specs, premium, backgroundImage, bookHref = "#bo
         </li>
       ))}
     </ul>
+    {priceTier && <PriceList tier={priceTier} className="mb-8" />}
     {bookHref.startsWith("/") ? (
       <Link
         to={bookHref}
@@ -93,16 +97,22 @@ const PcsSection = () => {
   return (
     <section id="pcs" className="py-24 px-4">
       <div className="container mx-auto max-w-5xl">
-        <h2 className="font-heading text-3xl md:text-5xl font-bold text-center mb-4 gradient-text">
-          Our PCs
-        </h2>
-        <p className="text-center text-muted-foreground text-lg mb-16 max-w-xl mx-auto">
-          Choose your weapon. Every station is built for performance.
-        </p>
-        <div className="grid md:grid-cols-2 gap-8">
-          <PcCard title="Ultra PC" emoji="🔥" specs={ultraSpecs} premium backgroundImage="/images/ultra-pc.jpg" bookHref="/ultra-rooms" />
-          <PcCard title="Volt PC" emoji="⚡" specs={voltSpecs} backgroundImage="/images/volt-pc.jpg" bookHref="/volt-rooms" />
-        </div>
+        <Reveal>
+          <h2 className="font-heading text-3xl md:text-5xl font-bold text-center mb-4 gradient-text">
+            Our PCs
+          </h2>
+          <p className="text-center text-muted-foreground text-lg mb-16 max-w-xl mx-auto">
+            Choose your weapon. Every station is built for performance.
+          </p>
+        </Reveal>
+        <Reveal stagger={0.1} className="grid md:grid-cols-2 gap-8">
+          <Reveal className="[&>*]:h-full">
+            <PcCard title="Ultra PC" emoji="🔥" specs={ultraSpecs} premium backgroundImage="/images/ultra-pc.jpg" bookHref="/ultra-rooms" priceTier="ultra" />
+          </Reveal>
+          <Reveal className="[&>*]:h-full">
+            <PcCard title="Volt PC" emoji="⚡" specs={voltSpecs} backgroundImage="/images/volt-pc.jpg" bookHref="/volt-rooms" priceTier="volt" />
+          </Reveal>
+        </Reveal>
       </div>
     </section>
   );

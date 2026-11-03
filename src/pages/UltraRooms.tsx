@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Cpu, Gauge, Monitor, Keyboard, Mouse, Armchair, MemoryStick, MessageCircle, MapPin } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import LazySetupBreakdown from "@/components/ultra/LazySetupBreakdown";
 
 const WHATSAPP_NUMBER = "201500732070";
 const MAP_LINK = "https://maps.app.goo.gl/7fjgL28b1Fx3qKQa6";
@@ -222,6 +223,10 @@ const UltraRooms = () => {
                 <span className="inline-flex items-center justify-center px-3 py-1 rounded-lg text-xl md:text-2xl font-bold bg-neon-cyan/20 text-neon-cyan border border-neon-cyan/40 neon-glow-cyan flex-shrink-0 sm:col-start-2 sm:justify-self-center">
                   {selectedRoom.pcCount} PCs
                 </span>
+              </div>
+              {/* Exploded-view product shot: full-bleed band inside the card, spec list below acts as its legend */}
+              <div className="-mx-8 mb-8 border-y border-white/5">
+                <LazySetupBreakdown specs={selectedRoom.specs} />
               </div>
               <h3 className="font-heading text-base md:text-lg uppercase tracking-wider text-muted-foreground mb-4">
                 PC Specifications

@@ -13,9 +13,18 @@ export default {
       },
     },
     extend: {
+      screens: {
+        // Side-by-side layout of the scroll film (src/experience): wide AND landscape,
+        // so a portrait tablet gets the stacked phone layout.
+        cine: { raw: "(min-width: 768px) and (min-aspect-ratio: 1/1)" },
+      },
       fontFamily: {
-        heading: ["Orbitron", "sans-serif"],
-        body: ["Rajdhani", "sans-serif"],
+        heading: ["Orbitron", "Changa", "sans-serif"],
+        body: ["Rajdhani", "Changa", "sans-serif"],
+        arabic: ["Changa", "sans-serif"],
+        // Redesign (src/volt): see docs/redesign-plan.md §4
+        archivo: ["Archivo", "system-ui", "sans-serif"],
+        cairo: ["Cairo", "system-ui", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -50,6 +59,23 @@ export default {
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
+        },
+        // 3D lounge HUD palette (mirrors COLORS in src/lounge/stations.ts)
+        // Redesign palette (src/volt), sampled from the venue photos. docs/redesign-plan.md §3
+        site: {
+          desk: "#DCDDE6", // page background
+          wall: "#14121F", // text on desk, photo bands
+          sticker: "#F2B100", // PC numbers + the one primary button ONLY
+          ring: "#5B2BC4", // links, focus, selected states on desk
+          chalk: "#F4F5F6", // text on wall bands, form fields
+          slate: "#4A5360", // secondary text on desk
+        },
+        volt: {
+          bg: "#0d0f17",
+          metal: "#1a1d29",
+          cyan: "#00f0ff",
+          magenta: "#ff007f",
+          purple: "#8b5cf6",
         },
         neon: {
           purple: "hsl(var(--neon-purple))",

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { z } from "zod";
+import Reveal from "@/components/Reveal";
 import { MapPin } from "lucide-react";
 
 const MAP_LINK = "https://maps.app.goo.gl/7fjgL28b1Fx3qKQa6";
@@ -69,12 +70,14 @@ const BookingSection = () => {
   return (
     <section id="booking" className="py-24 px-4">
       <div className="container mx-auto max-w-2xl">
-        <h2 className="font-heading text-3xl md:text-5xl font-bold text-center mb-4 gradient-text">
-          📅 Book Your Session
-        </h2>
-        <p className="text-center text-muted-foreground text-lg mb-12">
-          Reserve your spot and start gaming.
-        </p>
+        <Reveal>
+          <h2 className="font-heading text-3xl md:text-5xl font-bold text-center mb-4 gradient-text">
+            📅 Book Your Session
+          </h2>
+          <p className="text-center text-muted-foreground text-lg mb-12">
+            Reserve your spot and start gaming.
+          </p>
+        </Reveal>
 
         <form
           onSubmit={handleSubmit}

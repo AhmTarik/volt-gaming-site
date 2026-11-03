@@ -44,3 +44,26 @@ Thumbs.db
 
 # Testing
 coverage/
+
+# Keep the env template
+!.env.example
+
+# AI / tooling local files (not part of the app)
+.claude/
+.playwright-mcp/
+.cursor/
+CLAUDE.local.md
+
+# Notes and design drafts (not code)
+docs/
+
+# Raw source photos (optimized copies live in public/photos/)
+images/
+
+# Misc
+*.local
+*.tmp
+*.bak
+
+# Images the site does not use, kept locally in case we need them later
+unused-images/

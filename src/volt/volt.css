@@ -1,0 +1,45 @@
+/* Redesign fonts + base. Scoped to .volt-site so the classic site at / is unaffected.
+   Archivo is variable on width (62–125) and weight; Cairo covers Arabic. docs/redesign-plan.md §4 */
+@import url("https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Cairo:wght@400..900&display=swap");
+
+.volt-site {
+  background: #dcdde6;
+  color: #14121f;
+  font-family: "Archivo", system-ui, sans-serif;
+  font-weight: 450;
+  font-size: 1.125rem; /* 18px base */
+  line-height: 1.5;
+  font-stretch: 100%;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Undo the classic site's global heading font (index.css sets Orbitron on h1–h6). */
+.volt-site :is(h1, h2, h3, h4, h5, h6) {
+  font-family: "Archivo", system-ui, sans-serif;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.volt-site [lang="ar"],
+.volt-site:lang(ar) {
+  font-family: "Cairo", system-ui, sans-serif;
+  line-height: 1.7;
+  letter-spacing: 0;
+}
+
+/* Width presets for the variable Archivo axis. */
+.volt-site .type-wide {
+  font-stretch: 125%;
+}
+.volt-site .type-condensed {
+  font-stretch: 75%;
+  font-variant-numeric: tabular-nums;
+}
+
+.volt-site :focus-visible {
+  outline: 3px solid #5b2bc4;
+  outline-offset: 2px;
+}
+.volt-site .on-wall :focus-visible {
+  outline-color: #f2b100;
+}
